@@ -1,5 +1,5 @@
 # Random-Chord-Generator
-Designed for practising the ear. Requires MIDIUtil (https://github.com/MarkCWirt/MIDIUtil), and Windows Media Player (https://support.microsoft.com/en-us/help/18612/windows-media-player) set as default MIDI player (internal player planned for future update). Tested with Python 3.5.
+Designed for practising the ear. Requires MIDIUtil (https://github.com/MarkCWirt/MIDIUtil), and Windows Media Player (https://support.microsoft.com/en-us/help/18612/windows-media-player) set as default MIDI player (support for other players planned for future update). Tested with Python 3.5.
 
 ## Description
 The program generates a MIDI file in the local directory which is automatically opened and played by WMPlayer while the program is running.
