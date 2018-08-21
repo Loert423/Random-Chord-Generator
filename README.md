@@ -4,7 +4,7 @@ Designed for practising the ear. Requires MIDIUtil (https://github.com/MarkCWirt
 ## Description
 The program generates a MIDI file in the local directory which is automatically opened and played by WMPlayer while the program is running.
 
-## Usage
+## How to use
 To enter your answer, enter the notes you hear in ascending order, separated by a space. For instance, if you hear a B major chord starting on B4 enter: 
 ```
 B4 D#5 F#5
@@ -23,7 +23,7 @@ Other options for the user to enter are:
 - 'help2' - rolls chord at slow speed
 - 'back' - reverts to unrolled chord
 
-## Chord customization
+### Chord customization
 Chord parameters are set towards the top of the file:
 - chord_size - number of notes in chord
 - low_interval - size of lowest allowed interval, in semitones
