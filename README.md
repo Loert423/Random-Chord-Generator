@@ -5,7 +5,7 @@ Designed for practising the ear. Requires MIDIUtil (https://github.com/MarkCWirt
 The program generates a MIDI file in the local directory which is automatically opened and played by WMPlayer while the program is running.
 
 ## How to use
-To enter your answer, enter the notes you hear in ascending order, separated by a space. For instance, if you hear a B major chord starting on B4 enter: 
+To enter your answer, enter the pitches you hear in ascending order, separated by a space. For instance, a B major chord starting on B4 would be written thus: 
 ```
 B4 D#5 F#5
 ```
@@ -14,7 +14,7 @@ or (music theorists will hate this):
 B4 Eb5 Gb5
 ```
 
-Sharps (#) and flats (b) are treated enharmonically for black notes. 
+Sharps (#) and flats (b) are treated enharmonically (pitches such as 'Cb' or 'E#' are not supported). 
 
 Other options for the user to enter are:
 - 'q' - quits the program
