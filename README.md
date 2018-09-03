@@ -9,7 +9,7 @@ To enter your answer, enter the pitches you hear in ascending order, separated b
 ```
 B4 D#5 F#5
 ```
-or (music theorists will hate this):
+or even:
 ```
 B4 Eb5 Gb5
 ```
