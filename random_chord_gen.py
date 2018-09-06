@@ -24,7 +24,6 @@ state = 2   #state 1 = interval test (WIP), state 2 = chord test
 chord_size = 4  #number of notes in chord
 low_interval = 1    #minimum interval in chord (semitones)
 high_interval = 4   #maximum interval in chord (semitones)
-start = np.random.randint(45,70)    # random starting note between A2 and B4
 
 #start = eval(input('Starting note?: '))
 #note_seq = list(range(40,80,7))
@@ -64,6 +63,7 @@ while state == 2:   #chord game
     os.system("taskkill /f /im wmplayer.exe")
     time.sleep(.1)
 
+    start = np.random.randint(45,70)    # random starting note between A2 and B4
     i = np.random.randint(low_interval,high_interval,size = chord_size - 1)  # interval map, (low, high, number)
 
     note_seq = [start]  
