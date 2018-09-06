@@ -28,5 +28,4 @@ Chord parameters can be set at the top of random_chord_gen.py:
 - chord_size - number of notes in chord
 - low_interval - size of lowest allowed interval, in semitones
 - high_interval - size of highest allowed interval, in semitones
-- starting_note - can set range within which to generate starting note. Default is A2 -> B4.
   
