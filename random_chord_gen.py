@@ -10,9 +10,11 @@ Created on Thu Feb  9 17:02:38 2017
 
 #!/usr/bin/env python
 
-from midiutil.MidiFile3 import MIDIFile
+from midiutil.MidiFile import MIDIFile
 import numpy as np
 import os
+import subprocess
+import sys
 import time
 
 #dictionaries for parsing user input
@@ -53,14 +55,22 @@ def gen_MIDI(output, gap):
     #writes to file
     with open(str(output), "wb") as output_file:
         MyMIDI.writeFile(output_file)
-    
-    os.startfile(str(output))   # WMPlayer must be set as default MIDI player
+
+    if sys.platform == 'windows':
+        os.startfile(str(output))   # WMPlayer must be set as default MIDI player
+    elif sys.platform == 'linux':
+        subprocess.call(['cvlc', str(output)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
 
 while state == 2:   #chord game
-        
-    #checks that WMPlayer is closed
-    os.system("taskkill /f /im wmplayer.exe")
+
+    if sys.platform == 'windows':
+        #checks that WMPlayer is closed
+        os.system("taskkill /f /im wmplayer.exe")
+    elif sys.platform == 'linux':
+        bash_command = 'killall -9 cvlc'
+        subprocess.Popen(bash_command, shell=True)
+
     time.sleep(.1)
 
     start = np.random.randint(45,70)    # random starting note between A2 and B4
@@ -122,7 +132,12 @@ while state == 2:   #chord game
 
 while state == 1:   #WORK IN PROGRESS
         
-    os.system("taskkill /f /im wmplayer.exe")
+    if sys.platform == 'windows':
+        #checks that WMPlayer is closed
+        os.system("taskkill /f /im wmplayer.exe")
+    elif sys.platform == 'linux':
+        bash_command = 'killall -9 vlc'
+        subprocess.Popen(bash_command, shell=True)
     time.sleep(.1)
 
     i = np.random.randint(1,13,size=1)  # interval map, (low, high, number)
