@@ -59,8 +59,8 @@ def gen_MIDI(output, gap):
     if sys.platform == 'windows':
         os.startfile(str(output))   # WMPlayer must be set as default MIDI player
     elif sys.platform == 'linux':
-        subprocess.call(['cvlc', str(output)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
+        start_vlc_process = subprocess.Popen(['setsid', 'vlc', str(output)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
 
 while state == 2:   #chord game
 
@@ -68,8 +68,8 @@ while state == 2:   #chord game
         #checks that WMPlayer is closed
         os.system("taskkill /f /im wmplayer.exe")
     elif sys.platform == 'linux':
-        bash_command = 'killall -9 cvlc'
-        subprocess.Popen(bash_command, shell=True)
+        bash_command = 'killall -9 vlc'
+        stop_vlc_process = subprocess.Popen(bash_command, shell=True)
 
     time.sleep(.1)
 
