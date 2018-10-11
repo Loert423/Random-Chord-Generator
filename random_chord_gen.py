@@ -17,6 +17,8 @@ import subprocess
 import sys
 import time
 
+from ast import literal_eval
+
 #dictionaries for parsing user input
 note_name_dict = {'A#2': 46, 'A#0': 22, 'Ab1': 32, 'Db4': 61, 'Eb3': 51, 'A5': 81, 'A1': 33, 'Ab4': 68, 'Gb1': 30, 'C#3': 49, 'Db2': 37, 'D#4': 63, 'D3': 50, 'Ab2': 44, 'Bb3': 58, 'F#3': 54, 'B7': 107, 'A#5': 82, 'D#7': 99, 'D#3': 51, 'Db1': 25, 'C6': 84, 'F4': 65, 'Db5': 73, 'E7': 100, 'C3': 48, 'Eb6': 87, 'Ab5': 80, 'B5': 83, 'G#1': 32, 'G6': 91, 'E1': 28, 'B1': 35, 'Ab6': 92, 'Bb5': 82, 'E6': 88, 'C2': 36, 'E4': 64, 'D#2': 39, 'F6': 89, 'F3': 53, 'C#1': 25, 'Eb4': 63, 'D4': 62, 'Bb6': 94, 'C5': 72, 'C1': 24, 'A#3': 58, 'A0': 21, 'D5': 74, 'A2': 45, 'Eb7': 99, 'A3': 57, 'Gb5': 78, 'D#5': 75, 'B2': 47, 'F#6': 90, 'G5': 79, 'F1': 29, 'A#6': 94, 'F2': 41, 'F#7': 102, 'Ab3': 56, 'G#3': 56, 'C#6': 85, 'A6': 93, 'D#1': 27, 'Eb5': 75, 'G#6': 92, 'E5': 76, 'G#7': 104, 'G2': 43, 'A#4': 70, 'C7': 96, 'G1': 31, 'B0': 23, 'A#7': 106, 'Bb7': 106, 'Gb7': 102, 'G4': 67, 'F7': 101, 'F#2': 42, 'Eb2': 39, 'Bb0': 22, 'B3': 59, 'A7': 105, 'C4': 60, 'Ab7': 104, 'Db3': 49, 'B6': 95, 'C#2': 37, 'C#5': 73, 'B4': 71, 'C#7': 97, 'Gb3': 54, 'G7': 103, 'Eb1': 27, 'E2': 40, 'F#4': 66, 'G3': 55, 'C#4': 61, 'Db7': 97, 'D6': 86, 'Gb6': 90, 'F5': 77, 'G#4': 68, 'A#1': 34, 'G#2': 44, 'G#5': 80, 'C8': 108, 'Bb1': 34, 'Gb4': 66, 'A4': 69, 'D2': 38, 'Db6': 85, 'D#6': 87, 'Gb2': 42, 'Bb4': 70, 'F#5': 78, 'Bb2': 46, 'E3': 52, 'D7': 98, 'D1': 26, 'F#1': 30}
 intervals = {'U': 0, 'M3': 4, 'M2': 2, 'm7': 10, 'O': 12, 'D5': 6, 'M7': 11, 'm3': 3, 'm2': 1, 'm6': 8, 'P4': 5, 'M6': 9, 'P5': 7}
@@ -26,6 +28,18 @@ state = 2   #state 1 = interval test (WIP), state 2 = chord test
 chord_size = 4  #number of notes in chord
 low_interval = 1    #minimum interval in chord (semitones)
 high_interval = 4   #maximum interval in chord (semitones)
+
+if sys.argv[1]:
+    chord_size = int(sys.argv[1])
+    print(f'Chord size is {chord_size}')
+if sys.argv[2]:
+    int_range = literal_eval(sys.argv[2])
+    if isinstance(int_range[0], int) and isinstance(int_range[1], int):
+        low_interval = int_range[0]
+        high_interval = int_range[1]
+        print(f'Interval range from {low_interval} to {high_interval}')
+    else:
+        raise ValueError('Interval range must be in integers.')
 
 #start = eval(input('Starting note?: '))
 #note_seq = list(range(40,80,7))
@@ -74,7 +88,7 @@ while state == 2:   #chord game
     time.sleep(.1)
 
     start = np.random.randint(45,70)    # random starting note between A2 and B4
-    i = np.random.randint(low_interval,high_interval,size = chord_size - 1)  # interval map, (low, high, number)
+    i = np.random.randint(low_interval,high_interval+1,size = chord_size - 1)  # interval map, (low, high, number)
 
     note_seq = [start]  
     
