@@ -74,6 +74,8 @@ def gen_MIDI(output, gap):
         os.startfile(str(output))   # WMPlayer must be set as default MIDI player
     elif sys.platform == 'linux':
         start_vlc_process = subprocess.Popen(['setsid', 'vlc', str(output)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        time.sleep(.5)
+        focus_IPython = subprocess.Popen('wmctrl -a IPython', shell=True)
 
 
 while state == 2:   #chord game
